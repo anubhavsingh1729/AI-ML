@@ -24,7 +24,7 @@ with open("train_tokenizer.txt","r",encoding = "utf-8") as f:
 
 ids = list(txt.encode('utf-8'))
 
-vocab_size = 376
+vocab_size = 5000
 
 idx = 256
 
@@ -40,6 +40,7 @@ for i in range(vocab_size-256):
 	merges[top_pair] = idx
 
 
+print(f"compression ratio: {len(ids)/len(nids):.2f}X")
 vocab = {idx:bytes([idx]) for idx in range(256)}
 for (c1,c2),idx in merges.items():
 	vocab[idx] = vocab[c1]+vocab[c2]
